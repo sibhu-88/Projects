@@ -13,13 +13,14 @@ int main(){
 	//PWM_INT();
 	LCD_STR("Speed : ");
 	
-// 	while(1) {
-//         speed= 50;
+ 	while(1) {
+        speed= 50;
 // 		//((ADC_Read() / 1023) * 100);
 // 		LCD_INT(speed);
 //         LCD_STR(" km/h");
-// 		pwm_read(speed);
+ 		pwm_read(speed);
 //         delay_milisec(50);
-//     }
+    }
 }
+
 
