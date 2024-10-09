@@ -11,7 +11,7 @@ void PWM_INT(void){
 	PWMLER = (1 << 0) | (1 << 1);  // Load the values from MR0 and MR1
 }
 
-void pwm_read(U32 dutyCycle){
+void PWM(U32 dutyCycle){
 	if (dutyCycle <= 100) {
         PWMMR1 = (PWMMR0 * dutyCycle) / 100;  // Calculate and set the duty cycle
         PWMLER = (1 << 1);  // Latch the new MR1 value
