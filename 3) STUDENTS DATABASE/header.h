@@ -4,7 +4,8 @@
 #include <ctype.h>
 #include <unistd.h>
 
-typedef struct sdb{
+typedef struct sdb
+{
 	int rollno;
 	char name[20];
 	int percentage;
@@ -25,10 +26,9 @@ void Delete_record(SDB **);
 void name(SDB *);
 void rollno(SDB **);
 
-
-void src_name(SDB **,int);
-void print(SDB **,int);
-void src_percentage(SDB **,int);
+void src_name(SDB **, int);
+void print(SDB **, int);
+void src_percentage(SDB **, int);
 
 void Show_list(SDB *);
 
