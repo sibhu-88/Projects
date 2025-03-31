@@ -1,42 +1,82 @@
 #include "header.h"
 
+#define SERIAL_PORT "/dev/ttyUSB0"
+#define BUFFER_SIZE 256
+#define EXPECTED_BYTES 12
+
+/**
+ * @brief Configures the serial port with necessary attributes.
+ * @param fd File descriptor of the open serial port.
+ * @return 0 on success, -1 on failure.
+ */
+static int configure_serial_port(int fd)
+{
+    struct termios tty;
+
+    if (tcgetattr(fd, &tty) != 0) {
+        perror("Error getting serial port attributes");
+        return -1;
+    }
+
+    tty.c_cflag &= ~PARENB;   // No parity bit
+    tty.c_cflag &= ~CSTOPB;   // One stop bit
+    tty.c_cflag &= ~CSIZE;    
+    tty.c_cflag |= CS8;       // 8-bit characters
+    tty.c_cflag &= ~CRTSCTS;  // Disable hardware flow control
+    tty.c_cflag |= CREAD | CLOCAL; // Enable reading & ignore control lines
+
+    tty.c_cc[VTIME] = 10;  // Timeout in deciseconds (1 second)
+    tty.c_cc[VMIN] = 19;   // Minimum number of bytes to read
+
+    if (tcsetattr(fd, TCSANOW, &tty) != 0) {
+        perror("Error setting serial port attributes");
+        return -1;
+    }
+
+    return 0;
+}
+
+/**
+ * @brief Reads data from the serial port until an expected length is received.
+ * @return A dynamically allocated string containing the scanned ID or NULL on failure.
+ */
 char *scanning()
 {
-	int serial_port=open("/dev/ttyUSB0",O_RDWR);
-	
-	struct termios tty;
+    int serial_port = open(SERIAL_PORT, O_RDWR);
+    if (serial_port < 0) {
+        perror("Failed to open serial port");
+        return NULL;
+    }
 
-	tcgetattr(serial_port,&tty);
-	tty.c_cflag&=~PARENB;
-	tty.c_cflag&=~CSTOPB;
-	tty.c_cflag&=~CSIZE;
-	tty.c_cflag|=CS8;
-	tty.c_cflag&=~CRTSCTS;
-	tty.c_cflag|=CREAD|CLOCAL;
-	tty.c_cc[VTIME]=10;
-	tty.c_cc[VMIN]=19;
+    if (configure_serial_port(serial_port) != 0) {
+        close(serial_port);
+        return NULL;
+    }
 
-	tcsetattr(serial_port,TCSANOW,&tty);
+    char *rdbuf = (char *)malloc(BUFFER_SIZE);
+    if (!rdbuf) {
+        perror("Memory allocation failed");
+        close(serial_port);
+        return NULL;
+    }
 
-	char *rdbuf = malloc(256);
-	int scan = 1;
+    printf("Scanning the ID...\n");
 
-	printf("Scanning the Id.......\n");
+    while (1) {    
+        memset(rdbuf, 0, BUFFER_SIZE);     
+        int bytes_read = read(serial_port, rdbuf, BUFFER_SIZE - 1);    
 
-	while (scan) {	
-		memset(rdbuf, 0, 256); 	
-		int bytes_read = read(serial_port, rdbuf, 256);	
-		if (bytes_read == 12) {
-		    rdbuf[bytes_read] = '\0';
-	 	    close(serial_port);
-		    sleep(1);
-		    return rdbuf;
-	 	} else {
-		    sleep(1);
-		    printf("Scan again...\n");
-		}
-	}
-	close(serial_port);
-	free(rdbuf);
-	return NULL;
+        if (bytes_read == EXPECTED_BYTES) {
+            rdbuf[bytes_read] = '\0'; // Ensure null termination
+            close(serial_port);
+            return rdbuf;
+        } else {
+            printf("Scan again...\n");
+            sleep(1);
+        }
+    }
+
+    free(rdbuf);
+    close(serial_port);
+    return NULL;
 }
