@@ -6,27 +6,27 @@ Welcome to the **Projects** repository of [Siva Prabhu V](https://github.com/sib
 
 ### 🚗 Body Control Module (BCM) in Automobiles
 - **Description**: Implements CAN-based communication for controlling automobile body functions like wipers and indicators.
-- **Technologies**: Embedded C, LPC2129, CAN Protocol
+- **Technologies**: Embedded C, LPC2129, CAN Protocol.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/Body-Control-Module)
 
 ### 🔒 Multilevel Security System
 - **Description**: Security system integrating I2C-based EEPROM, GSM module, and OTP verification.
-- **Technologies**: Embedded C, LPC2129, I2C, UART
+- **Technologies**: Embedded C, LPC2129, I2C, UART.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/Multilevel-Security-System)
 
 ### 🏫 Student Database Management
 - **Description**: A database system to add, modify, delete, and display student records.
-- **Technologies**: C Programming, File Handling
+- **Technologies**: C Programming, File Handling.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/STUDENTS_DATABASE)
 
 ### ⏰ Inbuilt RTC with Temperature Reading using SPI
 - **Description**: Utilizes an RTC module and SPI communication to display real-time data with temperature readings.
-- **Technologies**: Embedded C, SPI, LPC2129
+- **Technologies**: Embedded C, SPI, LPC2129.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/INBUILD_RTC_ARM)
 
 ### 🎓 RFID-Based Student Database Management System
 - **Description**: Manages student records using RFID technology. Users can scan RFID tags to retrieve, add, modify, and delete student information.
-- **Technologies**: Embedded C, LPC2129, UART, C Programming, File Handling
+- **Technologies**: Embedded C, LPC2129, UART, C Programming, File Handling.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/RFID_STUDENTS_RECORD)
 
 ## 🎮 Games
