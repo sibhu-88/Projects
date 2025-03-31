@@ -1,8 +1,10 @@
 #include "header.h"
 
+#define SCREEN_WIDTH 80 // Define terminal width
+
 void Delete_record(SDB **ptr, char *RFID) {
     if (*ptr == NULL) {
-        printf("\n\t\t\tNo records found.\n");
+        printf("\n%*sNo records found.\n", SCREEN_WIDTH / 2 - 10, "");
         return;
     }
 
@@ -17,7 +19,7 @@ void Delete_record(SDB **ptr, char *RFID) {
 
     // If no matching record is found
     if (!current) {
-        printf("\n\t\t\tRecord with RFID %s not found.\n", RFID);
+        printf("\n%*sRecord with RFID %s not found.\n", SCREEN_WIDTH / 2 - 15, "", RFID);
         return;
     }
 
@@ -30,8 +32,8 @@ void Delete_record(SDB **ptr, char *RFID) {
 
     // Free the memory of the deleted node
     free(current);
-    
-    printf("\t\t\tYour record has been deleted successfully.\n");
+
+    printf("\n%*sYour record has been deleted successfully.\n", SCREEN_WIDTH / 2 - 15, "");
     usleep(500000); // Sleep for 0.5 seconds
 
     // Save updated records
