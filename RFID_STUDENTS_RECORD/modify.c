@@ -1,69 +1,61 @@
 #include "header.h"
 
-#define SCREEN_WIDTH 80 // Define the width of the terminal screen
+#define SCREEN_WIDTH 80 // Define terminal screen width
 
 void Modify_record(SDB **ptr, char *RFID) {
     int percentage;
-    char op, name[20];
-    char input[100];
-
+    char op, name[50];
+    
     system("clear");
+    
     if (*ptr == NULL) {
-        print_centered("\n\tNo records found.\n");
+        printf("\n%*sNo records found.\n", SCREEN_WIDTH / 2, "");
         return;
     }
 
-	if(display_student_list(*ptr, RFID)!=1) return;
+    if (display_student_list(*ptr, RFID) != 1) return;
 
-    printf("\n");
-    print_centered("+--------------------------------------------+");
-    print_centered("|        MODIFY OPTIONS MENU                 |");
-    print_centered("+--------------------------------------------+");
-    print_centered("| N/n : Name                                 |");
-    print_centered("| P/p : Percentage                           |");
-    print_centered("+--------------------------------------------+");
-    print_centered(" Enter Your Choice: ");
-    
+    printf("\n%*s+--------------------------------------------+\n", SCREEN_WIDTH / 2 - 22, "");
+    printf("%*s|        MODIFY OPTIONS MENU                 |\n", SCREEN_WIDTH / 2 - 22, "");
+    printf("%*s+--------------------------------------------+\n", SCREEN_WIDTH / 2 - 22, "");
+    printf("%*s| N/n : Name                                 |\n", SCREEN_WIDTH / 2 - 22, "");
+    printf("%*s| P/p : Percentage                           |\n", SCREEN_WIDTH / 2 - 22, "");
+    printf("%*s+--------------------------------------------+\n", SCREEN_WIDTH / 2 - 22, "");
+    printf("%*sEnter Your Choice: ", SCREEN_WIDTH / 2 - 11, "");
+
     scanf(" %c", &op);
 
     SDB *current = *ptr;
-    SDB *previous = NULL;
-
     while (current != NULL && strncmp(current->RFID, RFID, 12) != 0) {
-        previous = current;
         current = current->next;
     }
 
     if (current == NULL) {
-        print_centered("Record not found.");
+        printf("\n%*sRecord not found.\n", SCREEN_WIDTH / 2, "");
         return;
     }
 
-    percentage = current->percentage;
-    strcpy(name, current->name);
-
     switch (tolower(op)) {
         case 'n':
-            print_centered("\t Enter your name: ");
+            printf("\n%*sEnter your name: ", SCREEN_WIDTH / 2 - 9, "");
             scanf(" %[^\n]", name);
+            strcpy(current->name, name);
             break;
 
         case 'p':
-            print_centered("\t Enter your percentage: ");
+            printf("\n%*sEnter your percentage: ", SCREEN_WIDTH / 2 - 14, "");
             while (scanf("%d", &percentage) != 1) {
-                print_centered("Invalid input. Please enter a valid percentage: ");
+                printf("\n%*sInvalid input. Please enter a valid percentage: ", SCREEN_WIDTH / 2 - 24, "");
                 while (getchar() != '\n'); // Clear the input buffer
             }
+            current->percentage = percentage;
             break;
 
         default:
-            print_centered("\t Invalid option selected.");
+            printf("\n%*sInvalid option selected.\n", SCREEN_WIDTH / 2, "");
             return;
     }
 
-    current->percentage = percentage;
-    strcpy(current->name, name);
-
-    print_centered("\t Record updated successfully.");
+    printf("\n%*sRecord updated successfully.\n", SCREEN_WIDTH / 2, "");
     sleep(1);
 }
