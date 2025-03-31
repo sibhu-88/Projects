@@ -2,7 +2,7 @@
 
 void Delete_record(SDB **ptr, char *RFID) {
     if (*ptr == NULL) {
-        printf("\n\tNo records found.\n");
+        printf("\n\t\t\tNo records found.\n");
         return;
     }
 
@@ -10,27 +10,31 @@ void Delete_record(SDB **ptr, char *RFID) {
     SDB *previous = NULL;
 
     // Find the record with the matching RFID
-    while (current != NULL && strncmp(current->RFID, RFID, 12) != 0) {
+    while (current && strncmp(current->RFID, RFID, 12) != 0) {
         previous = current;
         current = current->next;
     }
 
-    // Deleting the first node (head)
-    if (previous == NULL) {
-        *ptr = current->next; // Move head to the next node
-    } else {
-        // Deleting a node in the middle or end
-        previous->next = current->next;
+    // If no matching record is found
+    if (!current) {
+        printf("\n\t\t\tRecord with RFID %s not found.\n", RFID);
+        return;
     }
 
-    // Free the memory of the current node
+    // Remove the found node from the linked list
+    if (previous == NULL) {
+        *ptr = current->next; // Update head if it's the first node
+    } else {
+        previous->next = current->next; // Bypass the node
+    }
+
+    // Free the memory of the deleted node
     free(current);
-
-    // Adjust roll numbers for the remaining records
-    current = *ptr; // Reset current to the new head
-
-    printf("\t Your record deleted successfully.\n");
+    
+    printf("\t\t\tYour record has been deleted successfully.\n");
     usleep(500000); // Sleep for 0.5 seconds
-	Save_record(*ptr);
-	usleep(50000);
+
+    // Save updated records
+    Save_record(*ptr);
+    usleep(50000); // Sleep for 50ms
 }
