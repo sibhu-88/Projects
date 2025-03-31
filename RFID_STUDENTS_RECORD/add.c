@@ -1,5 +1,7 @@
 #include "header.h"
 
+#define SCREEN_WIDTH 80 // Define terminal width
+
 /**
  * @brief Adds a new student record to the database.
  * @param ptr Pointer to the head of the linked list.
@@ -10,32 +12,38 @@ void add_new_record(SDB **ptr) {
     do {
         SDB *newRecord = (SDB *)malloc(sizeof(SDB));
         if (!newRecord) {
-            fprintf(stderr, "Error: Memory allocation failed.\n");
+            printf("\n%*sError: Memory allocation failed.\n", SCREEN_WIDTH / 2 - 15, "");
             return;
         }
 
         // Get RFID from scanning function
         char *rfid = scanning();
         if (!rfid) {
-            fprintf(stderr, "Error: Failed to scan RFID.\n");
+            printf("\n%*sError: Failed to scan RFID.\n", SCREEN_WIDTH / 2 - 15, "");
             free(newRecord);
             return;
         }
+
         strncpy(newRecord->RFID, rfid, sizeof(newRecord->RFID) - 1);
         newRecord->RFID[sizeof(newRecord->RFID) - 1] = '\0'; // Ensure null termination
         free(rfid); // Free dynamically allocated RFID buffer
 
         // Get user input
-        printf("\t\t\t Enter Your Name: ");
-        if (scanf(" %[^\n]", newRecord->name) != 1) {
-            fprintf(stderr, "Error: Invalid input for name.\n");
+        printf("\n%*s+------------------------------------------+\n", SCREEN_WIDTH / 2 - 22, "");
+        printf("%*s|          ADD NEW STUDENT RECORD          |\n", SCREEN_WIDTH / 2 - 22, "");
+        printf("%*s+------------------------------------------+\n", SCREEN_WIDTH / 2 - 22, "");
+
+        printf("\n%*sEnter your name: ", SCREEN_WIDTH / 2 - 10, "");
+        if (!fgets(newRecord->name, sizeof(newRecord->name), stdin)) {
+            printf("\n%*sError: Invalid input for name.\n", SCREEN_WIDTH / 2 - 15, "");
             free(newRecord);
             return;
         }
+        newRecord->name[strcspn(newRecord->name, "\n")] = '\0'; // Remove trailing newline
 
-        printf("\t\t\t Enter Your Percentage: ");
+        printf("\n%*sEnter your percentage: ", SCREEN_WIDTH / 2 - 14, "");
         while (scanf("%f", &newRecord->percentage) != 1) {
-            printf("Invalid input. Please enter a valid percentage: ");
+            printf("\n%*sInvalid input. Please enter a valid percentage: ", SCREEN_WIDTH / 2 - 20, "");
             while (getchar() != '\n'); // Clear invalid input
         }
 
@@ -55,11 +63,13 @@ void add_new_record(SDB **ptr) {
         }
 
         // Ask user to add another record
-        printf("\t\t\t Do you want to add another record? (y/n): ");
+        printf("\n%*sDo you want to add another record? (y/n): ", SCREEN_WIDTH / 2 - 20, "");
         while (scanf(" %c", &choice) != 1 || (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N')) {
-            printf("Invalid input. Enter 'y' to add another record or 'n' to stop: ");
+            printf("\n%*sInvalid input. Enter 'y' to add another record or 'n' to stop: ", SCREEN_WIDTH / 2 - 25, "");
             while (getchar() != '\n'); // Clear invalid input
         }
+
+        getchar(); // Consume extra newline character
 
     } while (choice == 'y' || choice == 'Y');
 }
