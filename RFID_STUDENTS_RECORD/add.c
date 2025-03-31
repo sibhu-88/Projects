@@ -26,14 +26,14 @@ void add_new_record(SDB **ptr) {
         free(rfid); // Free dynamically allocated RFID buffer
 
         // Get user input
-        printf("\t Enter Your Name: ");
+        printf("\t\t\t Enter Your Name: ");
         if (scanf(" %[^\n]", newRecord->name) != 1) {
             fprintf(stderr, "Error: Invalid input for name.\n");
             free(newRecord);
             return;
         }
 
-        printf("\t Enter Your Percentage: ");
+        printf("\t\t\t Enter Your Percentage: ");
         while (scanf("%f", &newRecord->percentage) != 1) {
             printf("Invalid input. Please enter a valid percentage: ");
             while (getchar() != '\n'); // Clear invalid input
@@ -55,7 +55,7 @@ void add_new_record(SDB **ptr) {
         }
 
         // Ask user to add another record
-        printf("\t Do you want to add another record? (y/n): ");
+        printf("\t\t\t Do you want to add another record? (y/n): ");
         while (scanf(" %c", &choice) != 1 || (choice != 'y' && choice != 'Y' && choice != 'n' && choice != 'N')) {
             printf("Invalid input. Enter 'y' to add another record or 'n' to stop: ");
             while (getchar() != '\n'); // Clear invalid input
