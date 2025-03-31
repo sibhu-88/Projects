@@ -27,7 +27,7 @@ Welcome to the **Projects** repository of [Siva Prabhu V](https://github.com/sib
 ### 🎓 RFID-Based Student Database Management System
 - **Description**: Manages student records using RFID technology. Users can scan RFID tags to retrieve, add, modify, and delete student information.
 - **Technologies**: Embedded C, LPC2129, UART, C Programming, File Handling
-- [View Project](https://github.com/sibhu-88/Projects/tree/main/RFID_STUDENTS_RECORD))
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/RFID_STUDENTS_RECORD)
 
 ## 🎮 Games
 ### 🎲 Snakes and Ladders
