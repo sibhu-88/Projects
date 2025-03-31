@@ -1,73 +1,50 @@
-Projects Repository
-Overview
+# 📂 Projects Repository
 
-This repository contains multiple projects focused on embedded systems and C programming. Each project is designed to demonstrate specific concepts, algorithms, or applications relevant to embedded development.
-Projects
-1. Embedded System Project
+Welcome to the **Projects** repository of [Siva Prabhu V](https://github.com/sibhu-88). This repository contains various embedded systems and software development projects, showcasing expertise in microcontroller programming, communication protocols, and real-time system development.
 
-    Description: This project showcases various applications of embedded systems, including basic functionalities like LED blinking, button debouncing, and serial communication.
-    Key Features:
-        LED Blinker: Code to control an LED's blinking rate.
-        Button Debouncer: Code to ensure accurate button presses without noise.
-        Serial Communication: Implementation of serial protocols for data transmission.
+## 📌 Project List
 
-2. C Programming Project
+### 🚗 Body Control Module (BCM) in Automobiles
+- **Description**: Implements CAN-based communication for controlling automobile body functions like wipers and indicators.
+- **Technologies**: Embedded C, LPC2129, CAN Protocol
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/Body-Control-Module)
 
-    Description: This project illustrates fundamental C programming concepts through various examples, including data structures and algorithms.
-    Key Features:
-        Data Structures: Implementations of linked lists, stacks, and queues.
-        Algorithms: Examples of sorting (e.g., quicksort, mergesort) and searching (e.g., binary search).
-        File I/O: Demonstrations of reading from and writing to files in C.
+### 🔒 Multilevel Security System
+- **Description**: Security system integrating I2C-based EEPROM, GSM module, and OTP verification.
+- **Technologies**: Embedded C, LPC2129, I2C, UART
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/Multilevel-Security-System)
 
-(Repeat this section for each project in the repository)
-Installation
+### 🏫 Student Database Management
+- **Description**: A database system to add, modify, delete, and display student records.
+- **Technologies**: C Programming, File Handling
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/STUDENTS_DATABASE)
 
-To set up the projects, follow these steps:
+### ⏰ Inbuilt RTC with Temperature Reading using SPI
+- **Description**: Utilizes an RTC module and SPI communication to display real-time data with temperature readings.
+- **Technologies**: Embedded C, SPI, LPC2129
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/INBUILD_RTC_ARM)
 
-    Clone the repository:
+## 🎮 Games
+### 🎲 Snakes and Ladders
+- **Description**: A classic board game implemented in C.
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/snakesAndLadders.c)
 
-    bash
+### 🔢 Number Guessing Game
+- **Description**: A simple number guessing game with user input.
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/Number_Guessing.c)
 
-git clone https://github.com/sibhu-88/Projects.git
+### ❌⭕ Tic Tac Toe
+- **Description**: Classic Tic-Tac-Toe game implemented in C.
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/Tic_Tac_Toe.c)
 
-Navigate to the specific project directory:
+### ✊✋✌️ Rock Paper Scissors
+- **Description**: The popular game where the player competes against the computer.
+- [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/Rock_Paper_Scissors.c)
 
-bash
+## 🔗 Connect with Me
+- **GitHub**: [sibhu-88](https://github.com/sibhu-88)
+- **Portfolio**: [sivaprabhu.github.io](https://sibhu-88.github.io/sivaprabhu.github.io/)
+- **LinkedIn**: [sivaprabhu-v](https://www.linkedin.com/in/sivaprabhu-v/)
+- **Email**: [imsivaprabhu08@gmail.com](mailto:imsivaprabhu08@gmail.com)
 
-    cd Projects/project_name
-
-    Install any necessary dependencies or tools (if applicable).
-
-Usage
-
-After installation, you can use each project as follows:
-
-    For the Embedded System Project, upload the code to your microcontroller and run it.
-    For the C Programming Project, compile the code using:
-
-    bash
-
-gcc main.c -o output
-
-Execute the program:
-
-bash
-
-    ./output
-
-Contributing
-
-We welcome contributions to any of the projects! Please follow these steps:
-
-    Fork the repository.
-    Create a new branch for your changes.
-    Make your changes and commit them.
-    Push to your branch.
-    Open a pull request.
-
-License
-
-This repository is licensed under the MIT License. See the LICENSE file for details.
-Contact
-
-For inquiries, please reach out at learnyouself88@gmail.com.
+Feel free to explore the projects and contribute! 🚀
