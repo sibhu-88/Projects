@@ -27,7 +27,7 @@ int main() {
 
         switch (tolower(ch)) {
             case 's':
-                strncpy(rfid, scanning(), 13);
+                strncpy(rfid, scanning(hptr,0), 13);
                 rfid[12] = '\0';
                 printf("%*sRFID - %s\n", (SCREEN_WIDTH - 20) / 2, "", rfid);
                 sleep(1);
@@ -104,4 +104,6 @@ void student(SDB **ptr, char *rfid) {
         scanf(" %c", &ch);
         getchar(); // Consume newline character
     } while (tolower(ch) == 'y');
+	Save_record(*ptr);
+        usleep(50000);
 }
