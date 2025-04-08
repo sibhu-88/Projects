@@ -7,17 +7,32 @@
  * @param ptr Pointer to the head of the linked list.
  */
 void add_new_record(SDB **ptr) {
-    char choice;
+    char choice,i=0;
 
     do {
         SDB *newRecord = (SDB *)malloc(sizeof(SDB));
+	
+	while (++i) {
+	    SDB *current = *ptr;
+	    while (current) {
+		if (current->rollno == i) {
+		    break;
+		}
+		current = current->next;
+	    }
+	    if (current == NULL) {
+		newRecord->rollno = i;
+		break;
+	    }
+	}	
+
         if (!newRecord) {
             printf("\n%*sError: Memory allocation failed.\n", SCREEN_WIDTH / 2 - 15, "");
             return;
         }
 
         // Get RFID from scanning function
-        char *rfid = scanning();
+        char *rfid = scanning(*ptr,1);
         if (!rfid) {
             printf("\n%*sError: Failed to scan RFID.\n", SCREEN_WIDTH / 2 - 15, "");
             free(newRecord);
@@ -57,7 +72,6 @@ void add_new_record(SDB **ptr) {
             while (last->next) {
                 last = last->next;
             }
-            newRecord->rollno = last->rollno + 1;
             newRecord->next = NULL;
             last->next = newRecord;
         }
