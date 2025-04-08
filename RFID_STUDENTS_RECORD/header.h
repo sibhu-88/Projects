@@ -26,7 +26,7 @@ typedef struct SDB {
  * @brief Scans and returns the RFID from the scanner. 
  * @return Pointer to dynamically allocated RFID string.
  */
-char *scanning();
+char *scanning(SDB *ptr,int flag);
 
 /** 
  * @brief Adds a new student record to the database.
