@@ -3,6 +3,7 @@
 #define SERIAL_PORT "/dev/ttyUSB0"
 #define BUFFER_SIZE 256
 #define EXPECTED_BYTES 12
+#define SCREEN_WIDTH 80
 
 /**
  * @brief Configures the serial port with necessary attributes.
@@ -40,7 +41,7 @@ static int configure_serial_port(int fd)
  * @brief Reads data from the serial port until an expected length is received.
  * @return A dynamically allocated string containing the scanned ID or NULL on failure.
  */
-char *scanning()
+char *scanning(SDB *ptr,int flag)
 {
     int serial_port = open(SERIAL_PORT, O_RDWR);
     if (serial_port < 0) {
@@ -60,21 +61,37 @@ char *scanning()
         return NULL;
     }
 
-    printf("Scanning the ID...\n");
+   printf("%*s Scanning...\n", (SCREEN_WIDTH - 10) / 2, "");
 
-    while (1) {    
-        memset(rdbuf, 0, BUFFER_SIZE);     
-        int bytes_read = read(serial_port, rdbuf, BUFFER_SIZE - 1);    
+	while (1) {   
+		int rfid=0; 
+		memset(rdbuf, 0, BUFFER_SIZE);     
+		int bytes_read = read(serial_port, rdbuf, BUFFER_SIZE - 1);   
+		if(flag){
+			while (ptr) {
+				if (strncmp(ptr->RFID, rdbuf, 12) == 0) {
+				    rfid=1; 
+				    break;
+				}
+				ptr = ptr->next;
+			} 
+		}
 
-        if (bytes_read == EXPECTED_BYTES) {
-            rdbuf[bytes_read] = '\0'; // Ensure null termination
-            close(serial_port);
-            return rdbuf;
-        } else {
-            printf("Scan again...\n");
-            sleep(1);
-        }
-    }
+		if(!rfid){
+			if (bytes_read == EXPECTED_BYTES) {
+				rdbuf[bytes_read] = '\0'; // Ensure null termination
+				close(serial_port);
+				return rdbuf;
+			} else {
+				printf("%*s Scan again\n", (SCREEN_WIDTH - 10) / 2, "");
+				sleep(1);
+			}
+		}else {
+			printf("%*s This card detail already exit,\n", (SCREEN_WIDTH - 10) / 2, "");
+			printf("%*s Try another card...\n", (SCREEN_WIDTH - 10) / 2, "");
+			sleep(1);
+		}
+	}
 
     free(rdbuf);
     close(serial_port);
