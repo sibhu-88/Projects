@@ -17,7 +17,7 @@ void Save_record(SDB *ptr) {
     }
 
     fclose(file);
-    printf("\nFile saved successfully..\n");
+    printf("%*s File is saving...\n", (80 - 10) / 2, "");
     sleep(1);
 }
 
