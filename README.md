@@ -42,7 +42,7 @@ Welcome to the **Projects** repository of [Siva Prabhu V](https://github.com/sib
 - **Description**: Classic Tic-Tac-Toe game implemented in C.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/Tic_Tac_Toe.c)
 
-### ❌⭕ Tic Tac Toe
+### ❌⭕ Tic Tac Toe APP
 - **Description**: Classic Tic-Tac-Toe game implemented in C using GTK GUI.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/tictactoe)
 
