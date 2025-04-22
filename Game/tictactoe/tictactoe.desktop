@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Tic-Tac-Toe
+Comment=GTK Tic-Tac-Toe Game
+Exec=/home/vector/Desktop/SIBHU/app/gtk/GTK_NEW/gtk_out
+Icon=/home/vector/Desktop/SIBHU/app/gtk/GTK_NEW/tic-tac-toe.png 
+# optional, for app icon
+Terminal=false
+Type=Application
+Categories=Game;
+
+
+#You can create a .desktop file,
+#chmod +x file.desktop
+#cp tictactoe.desktop ~/.local/share/applications/
+#cp ~/.local/share/applications/tictactoe.desktop ~/Desktop/
