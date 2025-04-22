@@ -42,6 +42,10 @@ Welcome to the **Projects** repository of [Siva Prabhu V](https://github.com/sib
 - **Description**: Classic Tic-Tac-Toe game implemented in C.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/Tic_Tac_Toe.c)
 
+### ❌⭕ Tic Tac Toe
+- **Description**: Classic Tic-Tac-Toe game implemented in C using GTK GUI.
+ [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/tictactoe)
+
 ### ✊✋✌️ Rock Paper Scissors
 - **Description**: The popular game where the player competes against the computer.
  [View Project](https://github.com/sibhu-88/Projects/tree/main/Game/Rock_Paper_Scissors.c)
